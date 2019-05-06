@@ -180,7 +180,7 @@ const genParagraph = (parLength, arr) => {
 
 let addTagVal = 0;
 //combine paragraphs
-const combineParagraphs = (n) => {
+const combineParagraphs = n => {
     let parArr = [];
     for(n = 0; n < slider.value; n++) {
         if (addTagVal == 0) {
