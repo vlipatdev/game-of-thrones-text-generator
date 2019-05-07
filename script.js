@@ -1,7 +1,5 @@
 const slider = document.querySelector('.range');
-const name = document.querySelector('.name');
-const paragraph = document.querySelector('.paragraph');
-const numParagraphs = document.querySelector('.number-paragraphs');
+const rangeValue = document.querySelector('.range-value');
 const textArea = document.querySelector('.textarea');
 const addTag = document.querySelector('.add-tag');
 const copy = document.querySelector('.copy');
@@ -131,21 +129,20 @@ const lines = {
 };
 //array from object keys
 const namesArr = Object.keys(lines);
-//set initial array
-let curArr = lines.Daenerys;
+//random index generator
+const randInd = Math.floor(Math.random() * namesArr.length);
 //set initial character
-let curChar = 'Daenerys';
-//add class on initial character
-charArr[0].classList.add('selected');
+let curChar = namesArr[randInd];
+//set initial array of lines
+let curArr = lines[namesArr[randInd]];
+//declare paragraph text
+let parText;
 
 //update ui function
 const updateUI = () => {
     textArea.value = combineParagraphs(slider.value);
-    let par = 'paragraphs';
-    if (slider.value == 1) par = 'paragraph';
-    name.textContent = curChar;
-    numParagraphs.textContent = slider.value;
-    paragraph.textContent = ` ${par}`;
+    slider.value == 1 ? parText = 'paragraph' : parText = 'paragraphs';
+    rangeValue.innerHTML = `${curChar} <span class="divider">&#10140;</span> ${slider.value} ${parText}`;
     if (copy.textContent != 'Copy') copy.textContent = 'Copy';
 };
 
@@ -183,17 +180,10 @@ let addTagVal = 0;
 const combineParagraphs = n => {
     let parArr = [];
     for(n = 0; n < slider.value; n++) {
-        if (addTagVal == 0) {
-            parArr.push(genParagraph(parLength(), curArr));
-        } else {
-            parArr.push(`<p>${genParagraph(parLength(), curArr)}</p>`);
-        }
+        addTagVal == 0 ? parArr.push(genParagraph(parLength(), curArr)) : parArr.push(`<p>${genParagraph(parLength(), curArr)}</p>`);
     }
     return parArr.join('\n\n');
 };
-
-//render paragraphs onload
-textArea.textContent = combineParagraphs();
 
 //render paragraphs on slider change
 slider.addEventListener('change', updateUI);
@@ -202,11 +192,7 @@ slider.addEventListener('change', updateUI);
 addTag.addEventListener('click', () => {
     addTagVal == 0 ? addTagVal = 1 : addTagVal = 0;
     updateUI();
-    if (addTag.innerHTML != 'Remove &lt;p&gt; tags') {
-        addTag.innerHTML = 'Remove &lt;p&gt; tags' 
-    } else {
-        addTag.innerHTML = 'Add &lt;p&gt; tags'
-    };
+    addTag.innerHTML != 'Remove &lt;p&gt; tags' ? addTag.innerHTML = 'Remove &lt;p&gt; tags' : addTag.innerHTML = 'Add &lt;p&gt; tags';
 });
 
 //copy text
@@ -216,3 +202,13 @@ copy.addEventListener('click', () => {
     copy.textContent = 'Copied!';
     textArea.blur();
 });
+
+//initialize function
+const init = () => {
+    charArr[randInd].classList.add('selected');
+    slider.value == 1 ? parText = 'paragraph' : parText = 'paragraphs'
+    rangeValue.innerHTML = `${curChar} <span class="divider">&#10140;</span> ${slider.value} ${parText}`;
+    textArea.textContent = combineParagraphs(); 
+}
+
+init();
