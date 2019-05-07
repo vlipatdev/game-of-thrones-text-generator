@@ -147,7 +147,7 @@ const updateUI = () => {
 };
 
 //set previous element
-let prevEl = charArr[0];
+let prevEl = charArr[randInd];
 
 //add event listener to all characters
 charArr.map((el, i) => {
