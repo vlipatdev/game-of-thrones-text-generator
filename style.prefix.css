@@ -146,6 +146,7 @@ main {
     width: 6rem;
     background: rgba(255,255,255,.9);
     cursor: pointer;
+    border: none;
 }
 
 .character-image {
@@ -202,6 +203,11 @@ main {
             box-shadow: 0 5px 15px rgba(0,0,0,.15);
 }
 
+input[type=range]:focus::-webkit-slider-thumb {
+    outline: 1px dotted #212121;
+    outline: 5px auto -webkit-focus-ring-color;
+}
+
 .range-value {
     -webkit-border-radius: .5rem;
             border-radius: .5rem;
@@ -221,7 +227,6 @@ main {
     height: 25vh;
     width: 75vw;
     color: rgba(0,0,0,.8);
-    outline: none;
     background-color: white;
     border: none;
     padding: 3rem;
