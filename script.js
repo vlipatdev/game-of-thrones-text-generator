@@ -1,8 +1,8 @@
 const slider = document.querySelector('.range');
 const rangeValue = document.querySelector('.range-value');
 const textArea = document.querySelector('.textarea');
-const addTag = document.querySelector('.add-tag');
-const copy = document.querySelector('.copy');
+const addTagBtn = document.querySelector('.add-tag-btn');
+const copyBtn = document.querySelector('.copy-btn');
 const charArr = Array.from(document.querySelectorAll('.character-wrapper'));
 
 const lines = {
@@ -130,11 +130,11 @@ const lines = {
 //array from object keys
 const namesArr = Object.keys(lines);
 //random index generator
-const randInd = Math.floor(Math.random() * namesArr.length);
+const randIdx = Math.floor(Math.random() * namesArr.length);
 //set initial character
-let curChar = namesArr[randInd];
+let curChar = namesArr[randIdx];
 //set initial array of lines
-let curArr = lines[namesArr[randInd]];
+let curArr = lines[namesArr[randIdx]];
 //declare paragraph text
 let parText;
 
@@ -143,22 +143,20 @@ const updateUI = () => {
     textArea.value = combineParagraphs(slider.value);
     slider.value == 1 ? parText = 'paragraph' : parText = 'paragraphs';
     rangeValue.innerHTML = `${curChar} <span class="divider">&#10140;</span> ${slider.value} ${parText}`;
-    if (copy.textContent != 'Copy') copy.textContent = 'Copy';
+    if (copyBtn.textContent != 'Copy') copyBtn.textContent = 'Copy';
 };
 
 //set previous element
-let prevEl = charArr[randInd];
+let prevEl = charArr[randIdx];
 
 //add event listener to all characters
-charArr.map((el, i) => {
+charArr.map((el, idx) => {
     el.addEventListener('click', () => {
-        curArr = lines[namesArr[i]];
-        curChar = namesArr[i];
+        curArr = lines[namesArr[idx]];
+        curChar = namesArr[idx];
         updateUI();
-        if(prevEl !== el) {
-            el.classList.add('selected');
-            prevEl.classList.remove('selected');
-        }
+        prevEl.classList.remove('selected');
+        el.classList.add('selected');
         prevEl = el;
     });
 });
@@ -171,7 +169,7 @@ const genParagraph = (parLength, arr) => {
     let sentencesArr = [];
     for(i = 0 ; i < parLength ; i++) {
         sentencesArr.push(arr[Math.floor(Math.random() * arr.length)]);
-    }
+    };
     return sentencesArr.join(' ');
 };
 
@@ -189,26 +187,26 @@ const combineParagraphs = n => {
 slider.addEventListener('change', updateUI);
 
 //add or remove p tags
-addTag.addEventListener('click', () => {
+addTagBtn.addEventListener('click', () => {
     addTagVal == 0 ? addTagVal = 1 : addTagVal = 0;
     updateUI();
-    addTag.innerHTML != 'Remove &lt;p&gt; tags' ? addTag.innerHTML = 'Remove &lt;p&gt; tags' : addTag.innerHTML = 'Add &lt;p&gt; tags';
+    addTagBtn.innerHTML != 'Remove &lt;p&gt; tags' ? addTagBtn.innerHTML = 'Remove &lt;p&gt; tags' : addTagBtn.innerHTML = 'Add &lt;p&gt; tags';
 });
 
 //copy text
-copy.addEventListener('click', () => {
+copyBtn.addEventListener('click', () => {
     textArea.select();
     document.execCommand('copy');
-    copy.textContent = 'Copied!';
+    copyBtn.textContent = 'Copied!';
     textArea.blur();
 });
 
 //initialize function
 const init = () => {
-    charArr[randInd].classList.add('selected');
-    slider.value == 1 ? parText = 'paragraph' : parText = 'paragraphs'
+    charArr[randIdx].classList.add('selected');
+    slider.value == 1 ? parText = 'paragraph' : parText = 'paragraphs';
     rangeValue.innerHTML = `${curChar} <span class="divider">&#10140;</span> ${slider.value} ${parText}`;
     textArea.textContent = combineParagraphs(); 
-}
+};
 
 init();

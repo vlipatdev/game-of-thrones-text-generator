@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139755427-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -16,17 +15,20 @@
   	<meta name="theme-color" content="#34344A">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <link rel="stylesheet" href="style.prefix.css">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <script src="script.js" defer></script>
     <title>Game of Thrones Text Generator</title>
     <link href="img/favicon.ico" rel="icon" type="image/x-icon"/>
 </head>
+
 <body>
     <header>
         <iframe class="logo" src="img/logo.svg" title="Game of Thrones logo"></iframe>
         <p class="ipsum">Text Generator</p>
     </header>
+
     <main>
         <p class="select">Select character</p>
         <div class="characters-container">
@@ -74,10 +76,11 @@
         <p class="range-value"></p>
         <textarea class="textarea" aria-label="generated text"></textarea>
         <div>
-            <button class="button add-tag" aria-label="toggle paragraph tags">Add &lt;p&gt; tags</button>
-            <button class="button copy" aria-label="copy">Copy</button>
+            <button class="btn add-tag-btn" aria-label="toggle paragraph tags">Add &lt;p&gt; tags</button>
+            <button class="btn copy-btn" aria-label="copy">Copy</button>
         </div>
     </main>
+
     <footer>
         <p>Made by <a href="https://vlipatdev.github.io/" class="footer-name" aria-label="visit portfolio">Val Lipat</a>. Emojis from Twitter.</p>
     </footer>

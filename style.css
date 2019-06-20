@@ -47,7 +47,7 @@ body {
 
 .logo {
     height: auto;
-    width: 40rem;
+    width: 35rem;
     border: none;
 }
 
@@ -171,7 +171,7 @@ input[type=range]:focus::-webkit-slider-thumb {
     border-radius: .5rem;
 }
 
-.button {
+.btn {
     font-family: inherit;
     color: white;
     background-color: var(--color-secondary);
@@ -183,7 +183,7 @@ input[type=range]:focus::-webkit-slider-thumb {
     box-shadow: 0 5px 15px rgba(0,0,0,.15);
 }
 
-.add-tag {
+.add-tag-btn {
     margin-right: 1rem;
     background: var(--color-primary);
 }
@@ -201,16 +201,7 @@ footer {
     color: white;
 }
 
-@media screen and (max-width: 767px) {
-    .logo {
-        width: 80vw;
-    }
-
-    .ipsum {
-        margin-top: -6rem;
-        margin-bottom: 2rem;
-    }
-
+@media screen and (max-width: 768px) {
     .characters-container {
         align-items: center;
         flex-direction: column;
@@ -255,9 +246,6 @@ footer {
 }
 
 @media screen and (max-height:500px) {
-    .ipsum {
-        margin-top: -5rem;
-    }
     .textarea {
         height: 40vh;
     }
