@@ -185,12 +185,13 @@ const combineParagraphs = n => {
 
 //render paragraphs on slider change
 slider.addEventListener('change', updateUI);
+slider.addEventListener('input', updateUI);
 
 //add or remove p tags
 addTagBtn.addEventListener('click', () => {
     addTagVal == 0 ? addTagVal = 1 : addTagVal = 0;
     updateUI();
-    addTagBtn.innerHTML != 'Remove &lt;p&gt; tags' ? addTagBtn.innerHTML = 'Remove &lt;p&gt; tags' : addTagBtn.innerHTML = 'Add &lt;p&gt; tags';
+    addTagBtn.textContent != 'Remove <p> tags' ? addTagBtn.textContent = 'Remove <p> tags' : addTagBtn.textContent = 'Add <p> tags';
 });
 
 //copy text
