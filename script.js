@@ -179,7 +179,7 @@ const combineParagraphs = n => {
     let parArr = [];
     for(n = 0; n < slider.value; n++) {
         addTagVal == 0 ? parArr.push(genParagraph(parLength(), curArr)) : parArr.push(`<p>${genParagraph(parLength(), curArr)}</p>`);
-    }
+    };
     return parArr.join('\n\n');
 };
 
