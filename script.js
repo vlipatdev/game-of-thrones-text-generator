@@ -3,7 +3,7 @@ const rangeValue = document.querySelector('.range-value');
 const textArea = document.querySelector('.textarea');
 const addTagBtn = document.querySelector('.add-tag-btn');
 const copyBtn = document.querySelector('.copy-btn');
-const charArr = Array.from(document.querySelectorAll('.character-wrapper'));
+const charArr = document.querySelectorAll('.character-wrapper');
 
 const lines = {
     Daenerys: [
@@ -142,12 +142,12 @@ let parText;
 let prevEl = charArr[randIdx];
 
 // generate a random paragraph length with default min and max
-const parLength = (min = 3, max = 6) => Math.floor(Math.random() * (max - min) + min);
+const randLength = (min = 3, max = 6) => Math.floor(Math.random() * (max - min) + min);
 
 // generate a paragraph
 const genParagraph = (parLength, arr) => {
     const sentencesArr = [];
-    for (i = 0; i < parLength; i++) {
+    for (let i = 0; i < parLength; i++) {
         sentencesArr.push(arr[Math.floor(Math.random() * arr.length)]);
     }
     return sentencesArr.join(' ');
@@ -155,10 +155,14 @@ const genParagraph = (parLength, arr) => {
 
 let addTagVal = 0;
 // combine paragraphs
-const combineParagraphs = (n) => {
+const combineParagraphs = () => {
     const parArr = [];
-    for (n = 0; n < slider.value; n++) {
-        addTagVal === 0 ? parArr.push(genParagraph(parLength(), curArr)) : parArr.push(`<p>${genParagraph(parLength(), curArr)}</p>`);
+    for (let i = 0; i < slider.value; i++) {
+        if (addTagVal === 0) {
+            parArr.push(genParagraph(randLength(), curArr));
+        } else {
+            parArr.push(`<p>${genParagraph(randLength(), curArr)}</p>`);
+        }
     }
     return parArr.join('\n\n');
 };
@@ -166,13 +170,17 @@ const combineParagraphs = (n) => {
 // update ui function
 const updateUI = () => {
     textArea.value = combineParagraphs(slider.value);
-    slider.value === 1 ? parText = 'paragraph' : parText = 'paragraphs';
+    if (slider.value === '1') {
+        parText = 'paragraph';
+    } else {
+        parText = 'paragraphs';
+    }
     rangeValue.innerHTML = `${curChar} <span class="divider">&#10140;</span> ${slider.value} ${parText}`;
     if (copyBtn.textContent !== 'Copy') copyBtn.textContent = 'Copy';
 };
 
 // add event listener to all characters
-charArr.map((el, idx) => {
+charArr.forEach((el, idx) => {
     el.addEventListener('click', () => {
         curArr = lines[namesArr[idx]];
         curChar = namesArr[idx];
@@ -189,9 +197,17 @@ slider.addEventListener('input', updateUI);
 
 // add or remove p tags
 addTagBtn.addEventListener('click', () => {
-    addTagVal === 0 ? addTagVal = 1 : addTagVal = 0;
+    if (addTagVal === 0) {
+        addTagVal = 1;
+    } else {
+        addTagVal = 0;
+    }
     updateUI();
-    addTagBtn.textContent !== 'Remove <p> tags' ? addTagBtn.textContent = 'Remove <p> tags' : addTagBtn.textContent = 'Add <p> tags';
+    if (addTagBtn.textContent !== 'Remove <p> tags') {
+        addTagBtn.textContent = 'Remove <p> tags';
+    } else {
+        addTagBtn.textContent = 'Add <p> tags';
+    }
 });
 
 // copy text
@@ -205,7 +221,11 @@ copyBtn.addEventListener('click', () => {
 // initialize function
 const init = () => {
     charArr[randIdx].classList.add('selected');
-    slider.value === 1 ? parText = 'paragraph' : parText = 'paragraphs';
+    if (slider.value === '1') {
+        parText = 'paragraph';
+    } else {
+        parText = 'paragraphs';
+    }
     rangeValue.innerHTML = `${curChar} <span class="divider">&#10140;</span> ${slider.value} ${parText}`;
     textArea.textContent = combineParagraphs();
 };
