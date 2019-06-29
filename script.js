@@ -127,29 +127,51 @@ const lines = {
         'If the lamb sees the knife, she panics. Her panic seeps into her meat, darkens it, fouls the flavor.'
     ]
 };
-//array from object keys
+// array from object keys
 const namesArr = Object.keys(lines);
-//random index generator
+// random index generator
 const randIdx = Math.floor(Math.random() * namesArr.length);
-//set initial character
+// set initial character
 let curChar = namesArr[randIdx];
-//set initial array of lines
+// set initial array of lines
 let curArr = lines[namesArr[randIdx]];
-//declare paragraph text
+// declare paragraph text
 let parText;
 
-//update ui function
-const updateUI = () => {
-    textArea.value = combineParagraphs(slider.value);
-    slider.value == 1 ? parText = 'paragraph' : parText = 'paragraphs';
-    rangeValue.innerHTML = `${curChar} <span class="divider">&#10140;</span> ${slider.value} ${parText}`;
-    if (copyBtn.textContent != 'Copy') copyBtn.textContent = 'Copy';
-};
-
-//set previous element
+// set previous element
 let prevEl = charArr[randIdx];
 
-//add event listener to all characters
+// generate a random paragraph length with default min and max
+const parLength = (min = 3, max = 6) => Math.floor(Math.random() * (max - min) + min);
+
+// generate a paragraph
+const genParagraph = (parLength, arr) => {
+    const sentencesArr = [];
+    for (i = 0; i < parLength; i++) {
+        sentencesArr.push(arr[Math.floor(Math.random() * arr.length)]);
+    }
+    return sentencesArr.join(' ');
+};
+
+let addTagVal = 0;
+// combine paragraphs
+const combineParagraphs = (n) => {
+    const parArr = [];
+    for (n = 0; n < slider.value; n++) {
+        addTagVal === 0 ? parArr.push(genParagraph(parLength(), curArr)) : parArr.push(`<p>${genParagraph(parLength(), curArr)}</p>`);
+    }
+    return parArr.join('\n\n');
+};
+
+// update ui function
+const updateUI = () => {
+    textArea.value = combineParagraphs(slider.value);
+    slider.value === 1 ? parText = 'paragraph' : parText = 'paragraphs';
+    rangeValue.innerHTML = `${curChar} <span class="divider">&#10140;</span> ${slider.value} ${parText}`;
+    if (copyBtn.textContent !== 'Copy') copyBtn.textContent = 'Copy';
+};
+
+// add event listener to all characters
 charArr.map((el, idx) => {
     el.addEventListener('click', () => {
         curArr = lines[namesArr[idx]];
@@ -161,40 +183,18 @@ charArr.map((el, idx) => {
     });
 });
 
-//generate a random paragraph length with default min and max
-const parLength = (min = 3, max = 6) => Math.floor(Math.random() * (max - min) + min);
-
-//generate a paragraph
-const genParagraph = (parLength, arr) => {
-    let sentencesArr = [];
-    for(i = 0 ; i < parLength ; i++) {
-        sentencesArr.push(arr[Math.floor(Math.random() * arr.length)]);
-    };
-    return sentencesArr.join(' ');
-};
-
-let addTagVal = 0;
-//combine paragraphs
-const combineParagraphs = n => {
-    let parArr = [];
-    for(n = 0; n < slider.value; n++) {
-        addTagVal == 0 ? parArr.push(genParagraph(parLength(), curArr)) : parArr.push(`<p>${genParagraph(parLength(), curArr)}</p>`);
-    };
-    return parArr.join('\n\n');
-};
-
-//render paragraphs on slider change
+// render paragraphs on slider change
 slider.addEventListener('change', updateUI);
 slider.addEventListener('input', updateUI);
 
-//add or remove p tags
+// add or remove p tags
 addTagBtn.addEventListener('click', () => {
-    addTagVal == 0 ? addTagVal = 1 : addTagVal = 0;
+    addTagVal === 0 ? addTagVal = 1 : addTagVal = 0;
     updateUI();
-    addTagBtn.textContent != 'Remove <p> tags' ? addTagBtn.textContent = 'Remove <p> tags' : addTagBtn.textContent = 'Add <p> tags';
+    addTagBtn.textContent !== 'Remove <p> tags' ? addTagBtn.textContent = 'Remove <p> tags' : addTagBtn.textContent = 'Add <p> tags';
 });
 
-//copy text
+// copy text
 copyBtn.addEventListener('click', () => {
     textArea.select();
     document.execCommand('copy');
@@ -202,12 +202,12 @@ copyBtn.addEventListener('click', () => {
     textArea.blur();
 });
 
-//initialize function
+// initialize function
 const init = () => {
     charArr[randIdx].classList.add('selected');
-    slider.value == 1 ? parText = 'paragraph' : parText = 'paragraphs';
+    slider.value === 1 ? parText = 'paragraph' : parText = 'paragraphs';
     rangeValue.innerHTML = `${curChar} <span class="divider">&#10140;</span> ${slider.value} ${parText}`;
-    textArea.textContent = combineParagraphs(); 
+    textArea.textContent = combineParagraphs();
 };
 
 init();
