@@ -3,7 +3,7 @@ const rangeValue = document.querySelector('.range-value');
 const textArea = document.querySelector('.textarea');
 const addTagBtn = document.querySelector('.add-tag-btn');
 const copyBtn = document.querySelector('.copy-btn');
-const charArr = document.querySelectorAll('.character-wrapper');
+const charList = document.querySelectorAll('.character-wrapper');
 
 const lines = {
     Daenerys: [
@@ -139,7 +139,7 @@ let curArr = lines[namesArr[randIdx]];
 let parText;
 
 // set previous element
-let prevEl = charArr[randIdx];
+let prevEl = charList[randIdx];
 
 // generate a random paragraph length with default min and max
 const randLength = (min = 3, max = 6) => Math.floor(Math.random() * (max - min) + min);
@@ -180,7 +180,7 @@ const updateUI = () => {
 };
 
 // add event listener to all characters
-charArr.forEach((el, idx) => {
+charList.forEach((el, idx) => {
     el.addEventListener('click', () => {
         curArr = lines[namesArr[idx]];
         curChar = namesArr[idx];
@@ -220,7 +220,7 @@ copyBtn.addEventListener('click', () => {
 
 // initialize function
 const init = () => {
-    charArr[randIdx].classList.add('selected');
+    charList[randIdx].classList.add('selected');
     if (slider.value === '1') {
         parText = 'paragraph';
     } else {
