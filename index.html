@@ -1,88 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139755427-2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+	<head>
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=UA-139755427-2"
+		></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
 
-      gtag('config', 'UA-139755427-2');
-    </script>
-    <meta charset="UTF-8">
-    <meta name="author" content="Val Lipat">
-    <meta name="description" content="Game of Thrones Text Generator">
-  	<meta name="theme-color" content="#34344A">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+			gtag('config', 'UA-139755427-2');
+		</script>
+		<meta charset="UTF-8" />
+		<meta name="author" content="vlipatdev" />
+		<meta name="description" content="Game of Thrones Text Generator" />
+		<meta name="theme-color" content="#34344A" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <link rel="stylesheet" href="style.prefix.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <script src="script.js" defer></script>
-    <title>Game of Thrones Text Generator</title>
-    <link href="img/favicon.ico" rel="icon" type="image/x-icon"/>
-</head>
+		<link rel="stylesheet" href="style.prefix.css" />
+		<link
+			href="https://fonts.googleapis.com/css?family=Lato"
+			rel="stylesheet"
+		/>
+		<script src="script.js" defer></script>
+		<title>Game of Thrones Text Generator</title>
+		<link href="img/favicon.ico" rel="icon" type="image/x-icon" />
+	</head>
 
-<body>
-    <header>
-        <iframe class="logo" src="img/logo.svg" title="Game of Thrones logo"></iframe>
-        <p class="ipsum">Text Generator</p>
-    </header>
+	<body>
+		<header>
+			<iframe
+				class="logo"
+				src="img/logo.svg"
+				title="Game of Thrones logo"
+			></iframe>
+			<p class="ipsum">Text Generator</p>
+		</header>
 
-    <main>
-        <p class="select">Select character</p>
-        <div class="characters-container">
-            <div class="characters characters-row-1">
-                <button class="character-wrapper" aria-label="daenerys">
-                    <img class="character-image" src="img/daenerys.png" alt="daenerys">
-                </button>
-                <button class="character-wrapper" aria-label="jon">
-                    <img class="character-image" src="img/jon.png" alt="jon">
-                </button>
-                <button class="character-wrapper" aria-label="cersei">
-                    <img class="character-image" src="img/cersei.png" alt="cersei">
-                </button>
-                <button class="character-wrapper" aria-label="arya">
-                    <img class="character-image" src="img/arya.png" alt="arya">
-                </button>
-                <button class="character-wrapper" aria-label="jaime">
-                    <img class="character-image" src="img/jaime.png" alt="jaime">
-                </button>
-            </div>
-            <div class="characters characters-row-2">
-                <button class="character-wrapper" aria-label="tyrion">
-                    <img class="character-image" src="img/tyrion.png" alt="tyrion">
-                </button>
-                <button class="character-wrapper" aria-label="sansa">
-                    <img class="character-image" src="img/sansa.png" alt="sansa">
-                </button>
-                <button class="character-wrapper" aria-label="bran">
-                    <img class="character-image" src="img/bran.png" alt="bran">
-                </button>
-                <button class="character-wrapper" aria-label="sam">
-                    <img class="character-image" src="img/sam.png" alt="sam">
-                </button>
-                <button class="character-wrapper" aria-label="melisandre">
-                    <img class="character-image" src="img/melisandre.png" alt="melisandre">
-                </button>
-            </div>
-        </div>
-        <p class="select">Select number of paragraphs</p>
-        <div class="range-container">
-            <span class="minmax">1</span>
-            <input class="range" type="range" min="1" max="25" value="3" aria-label="adjust number of paragraphs">
-            <span class="minmax">25</span>
-        </div>
-        <p class="range-value"></p>
-        <textarea class="textarea" aria-label="generated text"></textarea>
-        <div>
-            <button class="btn add-tag-btn" aria-label="toggle paragraph tags">Add &lt;p&gt; tags</button>
-            <button class="btn copy-btn" aria-label="copy">Copy</button>
-        </div>
-    </main>
+		<main>
+			<p class="select">Select character</p>
+			<div class="characters-container">
+				<div class="characters characters-row-1">
+					<button class="character-wrapper" aria-label="daenerys">
+						<img
+							class="character-image"
+							src="img/daenerys.png"
+							alt="daenerys"
+						/>
+					</button>
+					<button class="character-wrapper" aria-label="jon">
+						<img class="character-image" src="img/jon.png" alt="jon" />
+					</button>
+					<button class="character-wrapper" aria-label="cersei">
+						<img class="character-image" src="img/cersei.png" alt="cersei" />
+					</button>
+					<button class="character-wrapper" aria-label="arya">
+						<img class="character-image" src="img/arya.png" alt="arya" />
+					</button>
+					<button class="character-wrapper" aria-label="jaime">
+						<img class="character-image" src="img/jaime.png" alt="jaime" />
+					</button>
+				</div>
+				<div class="characters characters-row-2">
+					<button class="character-wrapper" aria-label="tyrion">
+						<img class="character-image" src="img/tyrion.png" alt="tyrion" />
+					</button>
+					<button class="character-wrapper" aria-label="sansa">
+						<img class="character-image" src="img/sansa.png" alt="sansa" />
+					</button>
+					<button class="character-wrapper" aria-label="bran">
+						<img class="character-image" src="img/bran.png" alt="bran" />
+					</button>
+					<button class="character-wrapper" aria-label="sam">
+						<img class="character-image" src="img/sam.png" alt="sam" />
+					</button>
+					<button class="character-wrapper" aria-label="melisandre">
+						<img
+							class="character-image"
+							src="img/melisandre.png"
+							alt="melisandre"
+						/>
+					</button>
+				</div>
+			</div>
+			<p class="select">Select number of paragraphs</p>
+			<div class="range-container">
+				<span class="minmax">1</span>
+				<input
+					class="range"
+					type="range"
+					min="1"
+					max="25"
+					value="3"
+					aria-label="adjust number of paragraphs"
+				/>
+				<span class="minmax">25</span>
+			</div>
+			<p class="range-value"></p>
+			<textarea class="textarea" aria-label="generated text"></textarea>
+			<div>
+				<button class="btn add-tag-btn" aria-label="toggle paragraph tags">
+					Add &lt;p&gt; tags
+				</button>
+				<button class="btn copy-btn" aria-label="copy">Copy</button>
+			</div>
+		</main>
 
-    <footer>
-        <p>Made by <a href="https://vlipatdev.github.io/" class="footer-name" aria-label="visit portfolio">Val Lipat</a>. Emojis from Twitter.</p>
-    </footer>
-</body>
+		<footer>
+			<p>
+				Made by
+				<a
+					href="https://github.com/vlipatdev"
+					class="footer-name"
+					aria-label="visit portfolio"
+					>vlipatdev</a
+				>. Emojis from Twitter.
+			</p>
+		</footer>
+	</body>
 </html>
